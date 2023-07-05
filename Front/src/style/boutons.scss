@@ -1,0 +1,11 @@
+/*** les mixin permette de créé des prototypes ou bloc de code reutilisable : style d'un bouton ***/
+@mixin button-styles {
+    padding: 10px;
+    background-color: #9c9696;
+    color: rgb(128, 0, 255);
+  }
+  /*** @include sert a importer ( le button styles) ***/
+  .button {
+    @include button-styles;
+  }
+  
