@@ -1,7 +1,15 @@
-$primary-color: rgb(12, 0, 183);
+@import 'app';
 
-.header{
-    width: 100%;
-    height: 400px;
-    color: $primary-color;
+.header {
+  width: 100%;
+  height: 100px;
+}
+.header.light-theme{
+  @extend .light-theme;
+  background-color: $secondary-background-light;
+}
+
+.header.dark-theme {
+  @extend .dark-theme;
+  background-color: $secondary-background-dark;
 }

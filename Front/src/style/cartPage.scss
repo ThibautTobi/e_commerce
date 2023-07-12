@@ -1,0 +1,31 @@
+.product-card {
+  display: flex;
+  flex-direction: column;
+  width: 290px;
+  height: 350px;
+
+  &__media {
+    width: 280px;
+    height: 280px;
+  }
+
+  &__content {
+    padding: 16px;
+  }
+
+  &__title {
+    /* Styles pour le titre du produit */
+  }
+
+  &__price {
+    /* Styles pour le prix du produit */
+  }
+
+  &__button {
+    /* Styles pour le bouton "Informations" */
+  }
+
+  &__information {
+    /* Styles pour le contenu des informations du produit */
+  }
+}

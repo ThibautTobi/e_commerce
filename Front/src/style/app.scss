@@ -2,49 +2,27 @@
   text-align: center;
 }
 // importer couleur primaire et couleur secondaire  pour modifier la couleur secondaire qui sera c elle de header et footer.
-// 
 
-  .light-theme{
-    background-color: white;
-    color: black;
-      }
-  .dark-theme{
-    background-color: gray;
-    color: white;
-      }
+// Variables pour le thème clair
+$primary-color-light: rgba(52, 52, 52, 0.97);
+$primary-background-light:rgb(233, 233, 233);
+// $secondary-background-light: rgba(35, 118, 206, 0.545);
+$secondary-background-light: rgba(21, 218, 113, 0.545);
+;
 
+// Variables pour le thème sombre
+$primary-color-dark: white;
+$primary-background-dark:grey;
+$secondary-background-dark: #393939;
 
-// .App-logo {
-//   height: 40vmin;
-//   pointer-events: none;
-// }
+// Styles pour le thème clair
+.light-theme {
+  background-color: $primary-background-light;
+  color: $primary-color-light;
+}
 
-// @media (prefers-reduced-motion: no-preference) {
-//   .App-logo {
-//     animation: App-logo-spin infinite 20s linear;
-//   }
-// }
-
-// .App-header {
-//   background-color: #282c34;
-//   min-height: 100vh;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   font-size: calc(10px + 2vmin);
-//   color: white;
-// }
-
-// .App-link {
-//   color: #61dafb;
-// }
-
-// @keyframes App-logo-spin {
-//   from {
-//     transform: rotate(0deg);
-//   }
-//   to {
-//     transform: rotate(360deg);
-//   }
-// }
+// Styles pour le thème sombre
+.dark-theme {
+  background-color: $primary-background-dark;
+  color: $primary-color-dark;
+}

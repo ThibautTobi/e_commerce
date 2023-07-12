@@ -1,33 +1,41 @@
 import React from 'react';
-import '../style/homePages.scss';
+import Annonce from '../components/Annonce';
+import '../style/home.scss';
 
 function HomePage (){
+
+// function Vedette (){
+// // import de la base de donnée ajouter au shema : "ventes: 10,"
+// const produits = data; 
+// // Triez les trois produits par ventes de manière décroissante
+// const meilleuresVentes = produits.sort((a, b) => b.ventes - a.ventes).slice(0, 3);
+
+// return (
+//   <section className="accueil__display">
+//     <div className="featured-products__grid">
+//       {meilleuresVentes.map((produit) => (
+//         <div key={produit.id} className="product-card">
+//           <img className="product-card__image" src={produit.image} alt={produit.nom} />
+//           <h3 className="product-card__title">{produit.nom}</h3>
+//           <p className="product-card__description">{produit.description}</p>
+//         </div>
+//       ))}
+//     </div>
+//   </section>
+// );
+// }
 
   function Accueil () {
 
     return (
       <div className="accueil">
-        <h1 className="accueil__title">Bienvenue sur notre site e-commerce</h1>
+        {/* <Annonce /> */}
+        <h1 className="accueil__title">Bienvenue sur notre site Shopping Web</h1>
         <p className="accueil__description">
           Découvrez nos produits de qualité à des prix compétitifs.
         </p>
-        <button className="accueil__cta">Découvrir</button>   
-        <section className="featured-products">
-          <h2 className="featured-products__title">Produits en vedette</h2>
-          <div className="featured-products__grid">
-            <div className="product-card">
-              <img className="product-card__image" src="product1.jpg" alt="Produit 1" />
-              <h3 className="product-card__title">Produit 1</h3>
-              <p className="product-card__description">Description du produit 1</p>
-            </div>
-            <div className="product-card">
-              <img className="product-card__image" src="product2.jpg" alt="Produit 2" />
-              <h3 className="product-card__title">Produit 2</h3>
-              <p className="product-card__description">Description du produit 2</p>
-            </div>
-            {/* Ajoute d'autres cartes de produits ici */}
-          </div>
-        </section>
+        <h2 className="featured-products__title">Produits en vedette</h2>
+        {/* <Vedette /> */}
       </div>
     );
   };
