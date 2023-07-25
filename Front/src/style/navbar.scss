@@ -1,14 +1,41 @@
-.nav__display{
+.navbar{
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-    &__bloc{
-      padding: 15px;
+    &__toolbar{
+      width: 100%;
+      height: 100%;
+      padding: 0px;
     }
+    // &__typo{
+    //   color: white;
+    // }
+    // &__navigation{
+    //   color: white;
+    // }
+    // &__ul{
+    //   color: white;
+    //   &__li{
+    //     color: white;
+    //   }
+    // }
+    // &__search{
+    //   color: white;
+    // }
 }
+// .nav__display{
+//   width: 100%;
+//   height: 100%;
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-between;
+//   align-items: center;
+//     &__bloc{
+//       padding: 15px;
+//     }
+// }
 nav {
     padding: 10px;
   }
@@ -27,7 +54,7 @@ nav {
   }
   
   a {
-    color: #fff;
+
     text-decoration: none;
     padding: 5px;
     font-size: 16px;

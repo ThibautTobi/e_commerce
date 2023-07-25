@@ -1,6 +1,7 @@
 import React from 'react';
 import Annonce from '../components/Annonce';
 import '../style/home.scss';
+import Banniere from '../components/Banniere';
 
 function HomePage (){
 
@@ -29,7 +30,8 @@ function HomePage (){
 
     return (
       <div className="accueil">
-        {/* <Annonce /> */}
+        <Banniere />
+        <Annonce />
         <h1 className="accueil__title">Bienvenue sur notre site Shopping Web</h1>
         <p className="accueil__description">
           Découvrez nos produits de qualité à des prix compétitifs.

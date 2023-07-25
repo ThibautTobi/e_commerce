@@ -1,51 +1,157 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, AppBar, Toolbar, Typography, IconButton, TextField, Badge } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SearchIcon from '@mui/icons-material/Search';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
+import { ThemeContext } from './Theme';
+//import Panier from './Panier';
 import '../style/navbar.scss';
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#ffffff',
+// modification des thèmes de composants avec les styles souhaités
+const lightTheme = createTheme({
+  components: {
+    MuiToolbar: {
+      styleOverrides: {
+        root: {
+            color: 'black', 
+          },
+      },
     },
-    secondary : {
-      main: '#124116',
+    MuiButton: {
+      styleOverrides: {
+        root: {
+                color:'black',
+              },
+      },
+    },
+    MuiFormControlLabel:{
+      styleOverrides:{
+        root:{
+          color: 'green',
+        }
+      }
+    },
+    MuiFormControl:{
+      styleOverrides:{
+        root:{
+          color: 'green',
+        }
+      }
+    },
+    MuiAppBar:{
+      styleOverrides:{
+        root:{
+          backgroundColor: 'transparent',
+        }
+      }
     }
   },
-  typography: {
-    fontFamily: 'Arial',
-  }
+});
+
+const darkTheme = createTheme({
+
+  components: {
+    MuiToolbar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#393939',
+          color: 'white',
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+        color:'white',
+        },
+      },
+    },
+    MuiFormControlLabel:{
+      styleOverrides:{
+        root:{
+          color: 'white',
+        }
+      }
+    },
+    MuiFormControl:{
+      styleOverrides:{
+        root:{
+          color: 'white',
+        }
+      }
+    },
+    MuiIconButton:{
+      styleOverrides:{
+        root:{
+          color: 'white',
+        }
+      }
+    },
+    MuiInputLabel:{
+      styleOverrides:{
+        root:{
+          color: 'white',
+        }
+      }
+    },
+    MuiOutlinedInput:{
+      styleOverrides:{
+        root:{
+          borderColor: 'white',
+        },
+        // '&:hover': {
+        //   color: 'white', // Couleur du texte de l'input lorsqu'il est survolé
+        // },
+        // '&:focus': {
+        //   borderColor: 'white', // Couleur de la bordure de l'input lorsqu'il a le focus
+        // },
+      }
+    },
+    MuiInputBase:{
+      styleOverrides:{
+        root:{
+          color: 'white',
+        }
+      }
+    },
+  },
 });
 
 function Navbar() {
+  const { theme } = useContext(ThemeContext);
+  const navigate = useNavigate();
+
+  const handlePanierIconClick = () => {
+    navigate('/Panier');
+  };
+
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
       <AppBar position="static" className="navbar">
-        <Toolbar>
-          <Typography variant="h6" color="secondary" component="div" sx={{ flexGrow: 1 }}>
+        <Toolbar className="navbar__toolbar">
+          <Typography className="navbar__typo" variant="h1" component="div" sx={{ flexGrow: 1 }}>
             Shopping Jungle
           </Typography>
           <nav className="navbar__navigation">
-            <ul className="navbar__list">
+            <ul className="navbar__ul">
               <li>
-                <Button variant="text"color="secondary" href="/">
+                <Button className="navbar__ul__li" variant="text" href="/">
                   Home
                 </Button>
               </li>
               <li>
-                <Button variant="text" color="secondary" href="/Produits">
+                <Button className="navbar__ul__li" variant="text" href="/Produits">
                   Produits
                 </Button>
               </li>
               <li>
-                <Button variant="text" color="secondary" href="/contact">
+                <Button className="navbar__ul__li" variant="text" href="/contact">
                   Contact
                 </Button>
               </li>
               <li>
-                <Button variant="text" color="secondary" href="/login">
+                <Button className="navbar__ul__li" variant="text" href="/login">
                   Login
                 </Button>
               </li>
@@ -59,14 +165,14 @@ function Navbar() {
               variant="outlined"
               InputProps={{
                 endAdornment: (
-                  <IconButton edge="end" color="secondary" size="large">
+                  <IconButton edge="end" size="large">
                     <SearchIcon />
                   </IconButton>
                 ),
               }}
             />
           </div>
-          <IconButton color="inherit" size="large">
+          <IconButton color="inherit" size="large" onClick={handlePanierIconClick}>
             <Badge badgeContent={0} color="error">
               <ShoppingCartIcon />
             </Badge>

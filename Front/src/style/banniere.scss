@@ -1,0 +1,8 @@
+.display__banniere{
+    width: 100%;
+    &__image{
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+    }
+}

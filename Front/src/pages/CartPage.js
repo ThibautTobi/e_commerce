@@ -1,117 +1,66 @@
-// import React, { useState } from 'react';
-// import { Card,CardActionArea,CardMedia,CardContent,Typography,Button,Popover} from '@mui/material';
-// import plantes from '../data/Data';
-// import '../style/cartPage.scss';
-
-// function CartPage  () {
-//   const [anchorEl, setAnchorEl] = useState(null);
-//   const [selectedProduct, setSelectedProduct] = useState(null);
-
-//   const handlePopoverOpen = (event, product) => {
-//     setAnchorEl(event.currentTarget);
-//     setSelectedProduct(product);
-//   };
-
-//   const handlePopoverClose = () => {
-//     setAnchorEl(null);
-//     setSelectedProduct(null);
-//   };
-
-//   const open = Boolean(anchorEl);
-
-//   return (
-//     <div className="product-page">
-//       {plantes.map((product) => (
-//         <Card
-//           key={product.id}
-//           className="product-card"
-//           onMouseEnter={(e) => handlePopoverOpen(e, product)}
-//           onMouseLeave={handlePopoverClose}
-//         >
-//           <CardActionArea>
-//             <CardMedia
-//               component="img"
-//               height="140"
-//               image={product.image}
-//               alt={product.name}
-//             />
-//             <CardContent>
-//               <Typography gutterBottom variant="h5" component="div">
-//                 {product.name}
-//               </Typography>
-//               <Typography variant="body2" color="text.secondary">
-//                 {product.price}
-//               </Typography>
-//             </CardContent>
-//           </CardActionArea>
-//         </Card>
-//       ))}
-
-//       <Popover
-//         open={open}
-//         anchorEl={anchorEl}
-//         onClose={handlePopoverClose}
-//         anchorOrigin={{
-//           vertical: 'bottom',
-//           horizontal: 'left',
-//         }}
-//         transformOrigin={{
-//           vertical: 'top',
-//           horizontal: 'left',
-//         }}
-//       >
-//         {selectedProduct && (
-//           <div className="product-popover">
-//             <Typography variant="h6">{selectedProduct.name}</Typography>
-//             <Typography>{selectedProduct.description}</Typography>
-//             <Typography>{selectedProduct.price}</Typography>
-//             <Button onClick={() => console.log('Ajouter au panier')}>
-//               Ajouter au panier
-//             </Button>
-//           </div>
-//         )}
-//       </Popover>
-//     </div>
-//   );
-// };
-
-// export default CartPage;
-
-import React from 'react';
-import { Card, CardMedia, CardContent, Typography, Button, Collapse } from '@mui/material';
-import plantes from '../data/Data';
+import React, { useState } from 'react';
+import { Card, CardMedia, CardContent, Typography, Button } from '@mui/material';
+import { Link } from 'react-router-dom';
+import Data from '../data/Data';
 import '../style/cartPage.scss';
+import { usePanier } from '../components/UsePanier';
+
+//MuiCard-root modifier (border)
 
 function ProductCard() {
-  const [expanded, setExpanded] = React.useState(false);
+  const [filter, setFilter] = useState('all'); // État pour gérer le filtre
+  const { addToPanier, } = usePanier();
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+  // Filtrer les plantes en fonction du filtre sélectionné
+  const filteredPlants = filter === 'all' ? Data : Data.filter((plant) => plant.categori === filter);
 
+  // console.log(addToPanier)
+  // console.log(panierItem)
+  
   return (
-    <div>
-      {plantes.map((plante) => (
-        <Card key={plante.id} className="product-card">
-          <CardMedia className="product-card__media" image={plante.image} title={plante.title} />
-          <CardContent className="product-card__content">
-            <Typography variant="h6" component="div" className="product-card__title">
+    <div className='product'>
+      <div className="product__filters">
+        {/* Boutons pour toutes les plantes, les plantes d'intérieur et les plantes d'extérieur */}
+        <Button onClick={() => setFilter('all')} variant="outlined" className={filter === 'all' ? 'active' : ''}>
+          Toutes les plantes
+        </Button>
+        <Button onClick={() => setFilter('interieur')} variant="outlined" className={filter === 'interieur' ? 'active' : ''}>
+          Plantes d'intérieur
+        </Button>
+        <Button onClick={() => setFilter('exterieur')} variant="outlined" className={filter === 'exterieur' ? 'active' : ''}>
+          Plantes d'extérieur
+        </Button>
+      </div>
+      <div className='product__card'>
+      {filteredPlants.map((plante) => (
+        <Card key={plante.id} className="product__card__display">
+          <CardMedia className="product__card__media" image={plante.image} title={plante.title} />
+          <CardContent className="product__card__content">
+            <Typography variant="h6" component="div" className="product__card__title">
               {plante.title}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="div" className="product-card__price">
+            <Typography variant="body2" color="textSecondary" component="div" className="product__card__price">
               {plante.price}
             </Typography>
-            <Button onClick={handleExpandClick} variant="outlined" size="small" className="product-card__button">
-              Informations
+            <Link to={`/cart/${plante.id}`} key={plante.id}>
+              <p className='product__card__fiche'>
+                Fiche complète
+              </p>
+            </Link>
+            <Button
+                variant="outlined"
+                size="small"
+                className="product__card__button"
+                onClick={() => {
+                  addToPanier(plante) // Ajouter la plante au panier
+                }}
+              >
+                Ajouter au panier
             </Button>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
-              <Typography variant="body2" color="textSecondary" component="div" className="product-card__information">
-                {plante.information}
-              </Typography>
-            </Collapse>
           </CardContent>
         </Card>
       ))}
+      </div>
     </div>
   );
 }

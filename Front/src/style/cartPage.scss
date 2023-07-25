@@ -1,31 +1,64 @@
-.product-card {
+.product{
+  margin: 20px;
+
   display: flex;
   flex-direction: column;
-  width: 290px;
-  height: 350px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
 
-  &__media {
-    width: 280px;
-    height: 280px;
-  }
+    &__card {
+      // margin: auto;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      // width: 290px;
+      // height: 450px;
+      // object-fit: cover;
+      // border-radius: 30px 0px 30px 0px;
 
-  &__content {
-    padding: 16px;
-  }
+      &__display{
+        margin: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 290px;
+      height: 450px;
+      object-fit: cover;
+      border-radius: 30px 0px 30px 0px;
+      }
+      &__media {
+        width: 280px;
+        height: 280px;
+        margin-top: 10px;
+        border-radius: 30px 0px 30px 0px;
+      }
 
-  &__title {
-    /* Styles pour le titre du produit */
-  }
+      &__content {
+        padding: 16px;
+      }
+      &__fiche{
+        border: 1px solid #1976d2;
+        color: #1976d2;
+        border-radius: 30px 0px 30px 0px;
+        padding: 5%;
+        
+      }
+      // &__title {
+      //   /* Styles pour le titre du produit */
+      // }
 
-  &__price {
-    /* Styles pour le prix du produit */
-  }
+      // &__price {
+      //   /* Styles pour le prix du produit */
+      // }
 
-  &__button {
-    /* Styles pour le bouton "Informations" */
-  }
+      // &__button {
+      //   /* Styles pour le bouton "Informations" */
+      // }
 
-  &__information {
-    /* Styles pour le contenu des informations du produit */
+      // &__information {
+      //   /* Styles pour le contenu des informations du produit */
+    // }
   }
 }

@@ -1,12 +1,11 @@
 import React from 'react';
 import '../style/banniere.scss';
-import image from '../images';
+import image from '../images/pexels-nandhu-kumar-339614.jpg';
 function Banniere (){
 
-    //intégrer carrousel 
     return(
-        <div>
-            <img src={image} alt="banniere"></img>
+        <div className='display__banniere'>
+            <img src={image} alt="banniere" className='display__banniere__image'></img>
         </div>
     )
 }
