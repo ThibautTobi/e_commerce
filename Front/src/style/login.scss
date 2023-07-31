@@ -1,73 +1,166 @@
-.login-display {
-    display: flex;
-    flex-direction: row;
-    max-width: 800px;
-    padding: 20px;
-    margin: 50px auto 50px auto;
-    background-color: #f2f2f2;
-    border: 1px solid #ccc;
-    border-radius: 25px;
+// .login-display {
+//     display: flex;
+//     flex-direction: row;
+//     max-width: 800px;
+//     padding: 20px;
+//     margin: 50px auto 50px auto;
+//     background-color: #f2f2f2;
+//     border: 1px solid #ccc;
+//     border-radius: 25px;
 
-    .login-container {
-      max-width: 400px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #f2f2f2;
-    }
-    .login-title {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
+//     .login-container {
+//       max-width: 400px;
+//       margin: 0 auto;
+//       padding: 20px;
+//       background-color: #f2f2f2;
+//     }
+//     .login-title {
+//       font-size: 24px;
+//       font-weight: bold;
+//       margin-bottom: 20px;
+//     }
   
-    .login-input {
-      width: 100%;
-      margin-bottom: 10px;
-      padding: 10px;
-      // border: 1px solid #ccc;
-      // border-radius: 4px;
-    }
+//     .login-input {
+//       width: 100%;
+//       margin-bottom: 10px;
+//       padding: 10px;
+//       // border: 1px solid #ccc;
+//       // border-radius: 4px;
+//     }
   
-    .login-button {
-      width: 100%;
-      padding: 10px;
-      // background-color: #4caf50;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
+//     .login-button {
+//       width: 100%;
+//       padding: 10px;
+//       // background-color: #4caf50;
+//       color: white;
+//       border: none;
+//       border-radius: 4px;
+//       cursor: pointer;
+//     }
+//   }
+  
+//   .create-account-container {
+//     max-width: 400px;
+//     margin: 0 auto;
+//     padding: 20px;
+//     background-color: #f2f2f2;
+//     // border: 1px solid #ccc;
+//     // border-radius: 4px;
+  
+//     .create-account-title {
+//       font-size: 24px;
+//       font-weight: bold;
+//       margin-bottom: 20px;
+//     }
+  
+//     .create-account-input {
+//       width: 100%;
+//       margin-bottom: 10px;
+//       padding: 10px;
+//       // border: 1px solid #ccc;
+//       // border-radius: 4px;
+//     }
+  
+//     .create-account-button {
+//       width: 100%;
+//       padding: 10px;
+//       // background-color: #4caf50;
+//       color: white;
+//       // border: none;
+//       // border-radius: 4px;
+//       cursor: pointer;
+//     }
+//   }
+
+
+.login-display {
+  display: flex;
+  flex-direction: column;
+  max-width: 900px;
+  padding: 20px;
+  margin: 50px auto 50px auto;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  border-radius: 40px;
+}
+
+.login-container, .create-account-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f2f2f2;
+  transform-style: preserve-3d; /* Permet la préservation de la transformation 3D */
+  transition: transform 0.8s; /* Durée de la transition de 0.8 secondes */
+}
+
+.banniere__1,.banniere__2{
+width: 900px;
+height: 500px;
+object-fit: cover;
+  &__image{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
   }
-  
-  .create-account-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f2f2f2;
-    // border: 1px solid #ccc;
-    // border-radius: 4px;
-  
-    .create-account-title {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-  
-    .create-account-input {
-      width: 100%;
-      margin-bottom: 10px;
-      padding: 10px;
-      // border: 1px solid #ccc;
-      // border-radius: 4px;
-    }
-  
-    .create-account-button {
-      width: 100%;
-      padding: 10px;
-      // background-color: #4caf50;
-      color: white;
-      // border: none;
-      // border-radius: 4px;
-      cursor: pointer;
-    }
+}
+.banniere__1{
+  &__image{
+    border-radius: 40px 40px 0px 0px;
   }
+}
+.banniere__2{
+  &__image{
+    border-radius: 0px 0px 40px 40px;
+  }
+}
+.login-container {
+  transform: perspective(800px) rotateY(0deg); /* Définir la rotation initiale de 0 degrés */
+}
+
+.create-account-container {
+  transform: perspective(800px) rotateY(-180deg); /* Définir la rotation initiale de -180 degrés pour cacher le côté du cube */
+  display: none; /* Cacher la div au début */
+}
+
+.show-create-account .login-container {
+  transform: perspective(800px) rotateY(180deg); /* Rotation pour afficher le côté du cube */
+  display: none; /* Cacher la div après la rotation */
+}
+
+.show-create-account .create-account-container {
+  transform: perspective(800px) rotateY(0deg); /* Rotation pour afficher la div du formulaire de création de compte */
+  display: block; /* Afficher la div après la rotation */
+}
+
+.login-title, .create-account-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.login-input, .create-account-input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.login-button, .create-account-button {
+  width: 100%;
+  padding: 10px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Pour afficher le lien de création de compte */
+.login-create-link {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Pour afficher le lien de retour à la page de connexion */
+.create-account-login-link {
+  cursor: pointer;
+  text-decoration: underline;
+}

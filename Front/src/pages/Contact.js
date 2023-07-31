@@ -6,8 +6,14 @@ import Autocomplete from '@mui/material/Autocomplete';
 import '../style/contact.scss';
 // import countries from '../data/Country';
 // import { Box } from '@mui/material';
+import { usePanier } from '../components/UsePanier';
 
 function Contact () {
+
+  const { panierItems } = usePanier();
+  console.log(panierItems);
+
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');

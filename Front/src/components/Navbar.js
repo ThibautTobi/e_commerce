@@ -5,6 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import { ThemeContext } from './Theme';
+import { usePanier } from '../components/UsePanier';
 //import Panier from './Panier';
 import '../style/navbar.scss';
 
@@ -121,6 +122,10 @@ const darkTheme = createTheme({
 function Navbar() {
   const { theme } = useContext(ThemeContext);
   const navigate = useNavigate();
+  const { panierItems } = usePanier();
+
+  // Calculer le nombre total d'articles dans le panier
+  const totalPlantesDansPanier = panierItems.reduce((total, plant) => total + plant.quantity, 0);
 
   const handlePanierIconClick = () => {
     navigate('/Panier');
@@ -173,7 +178,7 @@ function Navbar() {
             />
           </div>
           <IconButton color="inherit" size="large" onClick={handlePanierIconClick}>
-            <Badge badgeContent={0} color="error">
+            <Badge badgeContent={totalPlantesDansPanier} color="error">
               <ShoppingCartIcon />
             </Badge>
           </IconButton>

@@ -2,6 +2,8 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from './components/Theme';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 import App from './App';
 import './style/index.scss';
 
@@ -12,11 +14,14 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <ThemeProvider>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
+
 /*** 
 Panier d'achat :
 Une page où les utilisateurs peuvent voir les produits qu'ils ont ajoutés à leur panier, les quantités, les prix et passer à la caisse.

@@ -3,8 +3,12 @@ import Annonce from '../components/Annonce';
 import '../style/home.scss';
 import Banniere from '../components/Banniere';
 
-function HomePage (){
+import { usePanier } from '../components/UsePanier';
 
+
+function HomePage (){
+  const { panierItems } = usePanier();
+  console.log(panierItems);
 // function Vedette (){
 // // import de la base de donnée ajouter au shema : "ventes: 10,"
 // const produits = data; 
