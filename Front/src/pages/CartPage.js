@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useMemo } from 'react';
 import { Card, CardMedia, CardContent, Typography, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Data from '../data/Data';
@@ -9,11 +9,17 @@ import { usePanier } from '../components/UsePanier';
 
 function ProductCard() {
   const [filter, setFilter] = useState('all'); // État pour gérer le filtre
-  const { addToPanier, } = usePanier();
+  const { panierItems, addToPanier } = usePanier();
 
+console.log(panierItems);
   // Filtrer les plantes en fonction du filtre sélectionné
-  const filteredPlants = filter === 'all' ? Data : Data.filter((plant) => plant.categori === filter);
+  //const filteredPlants = filter === 'all' ? Data : Data.filter((plant) => plant.categori === filter);
+  const filteredPlants = useMemo(() => {
+    return filter === 'all' ? Data : Data.filter((plant) => plant.categori === filter);
+  }, [filter]);
+  
 
+  // console.log("Type of state.items:", Array.isArray(filteredPlants));// verification tableau
   
   return (
     <div className='product'>
@@ -49,7 +55,8 @@ function ProductCard() {
                 size="small"
                 className="product__card__button"
                 onClick={() => {
-                  addToPanier(plante)
+                  console.log('Adding to cart:', plante);
+                  addToPanier(plante);
                 }}
               >
                 Ajouter au panier

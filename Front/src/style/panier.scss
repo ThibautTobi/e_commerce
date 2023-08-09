@@ -1,15 +1,32 @@
 // Fichier panier.scss
 
 .panier {
-    margin: 20px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    background-color: #fff;
+  margin: 30px 0px 30px 0px;
+    // margin: 20px;
+    // padding: 10px;
+    // border: 1px solid #ddd;
+    // background-color: #fff;
   
     h2 {
       margin-bottom: 10px;
     }
-  
+    
+    &__enregistrer{
+      border: 5px solid #007bff;
+      border-radius: 40px;
+      padding: 20px;
+      margin: auto;
+      width: 50%;
+      height: auto;
+    }
+    &__display{
+      border: 5px solid #007bff;
+      border-radius: 40px;
+      padding: 20px;
+      margin: auto;
+      width: 50%;
+      height: auto;
+    }
     &__items {
       margin-bottom: 10px;
   
@@ -46,7 +63,7 @@
     }
   
     &__total {
-      text-align: right;
+
       margin-top: 10px;
     }
   

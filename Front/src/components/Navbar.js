@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { Button, AppBar, Toolbar, Typography, IconButton, TextField, Badge } from '@mui/material';
+import { Button, AppBar, Toolbar, Typography, IconButton, Badge } from '@mui/material';//TextField,
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import SearchIcon from '@mui/icons-material/Search';
+// import SearchIcon from '@mui/icons-material/Search';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import { ThemeContext } from './Theme';
@@ -15,7 +15,7 @@ const lightTheme = createTheme({
     MuiToolbar: {
       styleOverrides: {
         root: {
-            color: 'black', 
+            color: 'black',
           },
       },
     },
@@ -163,7 +163,7 @@ function Navbar() {
               {/* ou Logout si connecté */}
             </ul>
           </nav>
-          <div className="navbar__search">
+          {/* <div className="navbar__search">
             <TextField
               id="search"
               label="Rechercher"
@@ -175,8 +175,8 @@ function Navbar() {
                   </IconButton>
                 ),
               }}
-            />
-          </div>
+            /> 
+          </div>*/}
           <IconButton color="inherit" size="large" onClick={handlePanierIconClick}>
             <Badge badgeContent={totalPlantesDansPanier} color="error">
               <ShoppingCartIcon />

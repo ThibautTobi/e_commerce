@@ -56,10 +56,6 @@ function PanierProvider({ children }) {
   }, [panierItems]);
 
 
-  // console.log(panierItems);
-  // console.log(panierData);
-
-
   return (
     <PanierContext.Provider
       value={{
@@ -85,129 +81,66 @@ function usePanier() {
 
 export { PanierProvider, usePanier };
 
-/** en cours de debug **/
 
-// import React, { createContext, useContext, useEffect, useMemo, useReducer, useCallback, useRef } from 'react';
-// import Cookies from 'js-cookie';
-// import donneesPlantes from '../data/Data';
+// import React, { createContext, useContext, useEffect, useReducer } from 'react';
+// import cartReducer from '../reducers/CartReducer';
 
 // const PanierContext = createContext();
 
-// const UPDATE_PANIER = 'UPDATE_PANIER';
-
-// const panierReducer = (state, action) => {
-//   switch (action.type) {
-//     case UPDATE_PANIER:
-//       return action.payload;
-//     default:
-//       return state;
-//   }
-// };
-
 // function PanierProvider({ children }) {
-//   const [panierItems, dispatch] = useReducer(panierReducer, () => {
+//   const initialState = { items: [] };
+//   const [panierItems, dispatch] = useReducer(cartReducer, initialState, () => {
 //     const panierData = localStorage.getItem('panier');
-//     return panierData ? JSON.parse(panierData) : [];
+//     return panierData ? JSON.parse(panierData) : initialState; // Ajoutez cette condition
 //   });
 
-//   const panierRef = useRef();
-
-//   const updatePanier = (newPanierItems) => {
-//     dispatch({ type: UPDATE_PANIER, payload: newPanierItems });
-//     localStorage.setItem('panier', JSON.stringify(newPanierItems));
-//   };
-
-//   const updateQuantity = useCallback((plantId, quantity) => {
-//     updatePanier(
-//       panierItems.map((plant) =>
-//         plant.id === plantId ? { ...plant, quantity } : plant
-//       )
-//     );
+//   useEffect(() => {
+//     localStorage.setItem('panier', JSON.stringify(panierItems));
 //   }, [panierItems]);
 
-//   const addToPanier = useCallback((plant) => {
+//   // Fonction pour ajouter un article au panier
+//   const addToPanier = (plant) => {
+//     // Vérifier si le produit existe déjà dans le panier
 //     const existingPlant = panierItems.find((item) => item.id === plant.id);
 
 //     if (existingPlant) {
-//       updateQuantity(plant.id, existingPlant.quantity + 1);
+//       // Si le produit existe déjà, augmenter la quantité
+//       dispatch({ type: 'UPDATE_QUANTITY', payload: { id: plant.id, quantity: existingPlant.quantity + 1 } });
 //     } else {
-//       updatePanier([...panierItems, { ...plant, quantity: 1 }]);
+//       // Sinon, ajouter le produit au panier
+//       dispatch({ type: 'ADD_TO_CART', payload: { ...plant, quantity: 1 } });
 //     }
-//   }, [panierItems, updateQuantity]);
-
-//   const removeFromPanier = useCallback((plantId) => {
-//     updatePanier(panierItems.filter((plant) => plant.id !== plantId));
-//   }, [panierItems]);
-
-//   const clearPanier = useCallback(() => {
-//     updatePanier([]);
-//   }, []);
-
-//   const getTotalPrice = useMemo(() => {
-//     return panierItems.reduce((total, plant) => total + getPlantPrice.current(plant.id) * plant.quantity, 0);
-//   }, [panierItems]);
-
-//   const getPlantPrice = useRef((plantId) => {
-//     const planteInfo = donneesPlantes.find((plante) => plante.id === plantId);
-//     return planteInfo ? planteInfo.price : 0;
-//   });
-
-//   useEffect(() => {
-//     updatePanier(panierItems);
-//   }, [panierItems]);
-
-//   useEffect(() => {
-//     panierRef.current = addToPanier;
-//   }, [addToPanier]);
-
-//   const genererNumeroCommande = () => {
-//     const horodatage = new Date().getTime();
-//     const nombreAleatoire = Math.floor(Math.random() * 10000);
-//     return `COMMANDE-${horodatage}-${nombreAleatoire}`;
+//     console.log('sa ne marche pas')
 //   };
 
-//   const handleConfirmerCommande = () => {
-//     const commande = {
-//       items: panierItems.map((plant) => ({
-//         id: plant.id,
-//         quantity: plant.quantity,
-//       })),
-//       total: getTotalPrice(),
-//     };
+//   // Fonction pour supprimer un article du panier
+//   const removeFromPanier = (plantId) => {
+//     dispatch({ type: 'REMOVE_FROM_CART', payload: { id: plantId } });
+//   };
 
-//     const commandeJSON = JSON.stringify(commande);
-//     const numeroCommande = genererNumeroCommande();
+//   // Fonction pour mettre à jour la quantité d'un article dans le panier
+//   const updateQuantity = (plantId, quantity) => {
+//     dispatch({ type: 'UPDATE_QUANTITY', payload: { id: plantId, quantity } });
+//   };
 
-//     panierRef.current(commande);
-
-//     Cookies.set('commande', commandeJSON, { expires: 1 });
-//     Cookies.set('numeroCommande', numeroCommande, { expires: 1 });
-
-//     clearPanier();
+//   // Fonction pour vider complètement le panier
+//   const clearPanier = () => {
+//     dispatch({ type: 'CLEAR_CART' });
 //   };
 
 //   return (
-//     <PanierContext.Provider
-//       value={{
-//         panierItems,
-//         addToPanier,
-//         removeFromPanier,
-//         updateQuantity,
-//         getTotalPrice,
-//         handleConfirmerCommande,
-//       }}
-//     >
+//     <PanierContext.Provider value={{ panierItems, addToPanier, removeFromPanier, updateQuantity, clearPanier }}>
 //       {children}
 //     </PanierContext.Provider>
 //   );
-// }
+// };
 
-// function usePanier() {
+// const usePanier = () => {
 //   const context = useContext(PanierContext);
 //   if (!context) {
 //     throw new Error('Erreur du PanierProvider');
 //   }
 //   return context;
-// }
+// };
 
 // export { PanierProvider, usePanier };

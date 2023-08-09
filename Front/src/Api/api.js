@@ -47,6 +47,52 @@ export const deleteProduct = (productId) => {
   }).then(handleResponse);
 };
 
+// Fonction pour se connecter
+export const login = async (email, password) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (!response.ok) {
+      const data = await response.json();
+      throw new Error(data.message);
+    }
+
+    const data = await response.json();
+    return data.token;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+// Fonction pour créer un nouvel utilisateur
+export const signup = async (email, password) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/signup`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (!response.ok) {
+      const data = await response.json();
+      throw new Error(data.message);
+    }
+
+    const data = await response.json();
+    return data.message;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 // Fonction pour enregistrer une nouvelle commande dans le backend
 export const createOrder = (orderData) => {
   return fetch(`${API_BASE_URL}/api/orders`, {

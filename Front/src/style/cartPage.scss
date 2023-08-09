@@ -1,18 +1,26 @@
 .product{
   margin: 20px;
-
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
 
+    &__filters{
+      display: flex;
+      flex-direction: row;
+      width: 700px;
+      height: 40px;
+      justify-content: space-between;
+      margin: auto;
+      padding: 10px;
+    }
     &__card {
-      // margin: auto;
+      margin: auto;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      align-items: center;
+      justify-content: space-around;
       // width: 290px;
       // height: 450px;
       // object-fit: cover;
@@ -43,7 +51,8 @@
         color: #1976d2;
         border-radius: 30px 0px 30px 0px;
         padding: 5%;
-        
+
+      }  
       }
       // &__title {
       //   /* Styles pour le titre du produit */
@@ -61,4 +70,3 @@
       //   /* Styles pour le contenu des informations du produit */
     // }
   }
-}

@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from './components/Theme';
 import { Provider } from 'react-redux';
+import { PanierProvider } from './components/UsePanier';
+import ErrorBoundary from './components/ErreurBoundary';
 import store from './redux/store';
 import App from './App';
 import './style/index.scss';
@@ -13,11 +15,15 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <ThemeProvider>
-        <Provider store={store}>
-          <App />
-        </Provider>
-      </ThemeProvider>
+      <ErrorBoundary>
+        <PanierProvider>
+          <ThemeProvider>
+            <Provider store={store}>
+              <App />
+            </Provider>
+          </ThemeProvider>
+        </PanierProvider>
+      </ErrorBoundary>
     </BrowserRouter>
   </React.StrictMode>
 );

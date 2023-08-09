@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from './components/Theme';
-import { PanierProvider } from './components/UsePanier';
-import { useSelector } from 'react-redux';
-import { Routes, Route, Navigate } from 'react-router-dom';
+// import { PanierProvider } from './components/UsePanier';
+//import { useSelector } from 'react-redux';
+import { Routes, Route } from 'react-router-dom';//, Navigate
 import Header from './components/Header';
 import Home from './pages/Home';
 import Cart from './components/Cart';
@@ -19,14 +19,14 @@ function App() {
   const { theme } = useContext(ThemeContext);
 
   // Récupérer le rôle d'utilisateur à partir du Redux store
-  const userRole = useSelector((state) => state.user.role);
+  //const userRole = useSelector((state) => state.user.role);
 
   // Vérifier si l'utilisateur est administrateur
-  const isAdmin = userRole === 'admin';
+ // const isAdmin = userRole === 'admin';
 
   return (
       <div className={`App ${theme === 'dark' ? 'dark-theme' : 'light-theme'}`}>
-        <PanierProvider>
+        {/* <PanierProvider> */}
           <Header />
           <Routes>
             <Route exact path="/" element={<Home />} />
@@ -34,16 +34,17 @@ function App() {
             <Route path="/Cart/:id" element={<Cart />} />
             <Route path="/Contact" element={<Contact />} />
             <Route path="/Panier" element={<Panier />} />
-            {isAdmin ? (
+            <Route path="/Modification" element={<AdminPage />}/>
+            {/* {isAdmin ? (
               <Route path="/Modification" element={<AdminPage />} />
             ) : (
               <Route path="/Modification" element={<Navigate to="/" />} />
-            )}
+            )} */}
             <Route path="/Login" element={<Login />} />
             <Route path="*" element={<Error />} />
           </Routes>
           <Footer />
-        </PanierProvider>
+        {/* </PanierProvider> */}
       </div>
   );
 }

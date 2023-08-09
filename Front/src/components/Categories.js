@@ -1,41 +1,41 @@
-import React, { useState } from 'react';
-import './Categories.scss';
+// import React, { useState } from 'react';
+// import './Categories.scss';
 
-const Categories = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+// const Categories = () => {
+//   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+//   const toggleMenu = () => {
+//     setIsMenuOpen(!isMenuOpen);
+//   };
 
-  return (
-    <div className="categories">
-      <div className="categories__sidebar">
-        <h3>Categories</h3>
-        <ul className="categories__list">
-          <li className="categories__category">Category 1</li>
-          <li className="categories__category">Category 2</li>
-          <li className="categories__category">Category 3</li>
-          {/* Add more categories */}
-        </ul>
-      </div>
+//   return (
+//     <div className="categories">
+//       <div className="categories__sidebar">
+//         <h3>Categories</h3>
+//         <ul className="categories__list">
+//           <li className="categories__category">Category 1</li>
+//           <li className="categories__category">Category 2</li>
+//           <li className="categories__category">Category 3</li>
+//           {/* Add more categories */}
+//         </ul>
+//       </div>
 
-      <div className={`categories__menu ${isMenuOpen ? 'open' : ''}`}>
-        <button className="categories__menu-toggle" onClick={toggleMenu}>
-          Menu
-        </button>
-        <ul className="categories__list">
-          <li className="categories__category">Category 1</li>
-          <li className="categories__category">Category 2</li>
-          <li className="categories__category">Category 3</li>
-          {/* Add more categories */}
-        </ul>
-      </div>
-    </div>
-  );
-};
+//       <div className={`categories__menu ${isMenuOpen ? 'open' : ''}`}>
+//         <button className="categories__menu-toggle" onClick={toggleMenu}>
+//           Menu
+//         </button>
+//         <ul className="categories__list">
+//           <li className="categories__category">Category 1</li>
+//           <li className="categories__category">Category 2</li>
+//           <li className="categories__category">Category 3</li>
+//           {/* Add more categories */}
+//         </ul>
+//       </div>
+//     </div>
+//   );
+// };
 
-export default Categories;
+// export default Categories;
 
 /***
 import React from 'react';
