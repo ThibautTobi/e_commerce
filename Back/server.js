@@ -1,14 +1,11 @@
 // Importe le module Node.js 'http' pour créer un serveur HTTP
 const http = require('http');
-
-// Importe l'application Express depuis le fichier app.js
 const app = require('./app');
 
-// Crée un serveur en utilisant l'application Express
 const server = http.createServer(app);
 
 // Détermine le port sur lequel le serveur écoutera les requêtes
-const port = normalizePort(process.env.PORT || '4000');
+const port = normalizePort(process.env.PORT || '3001');
 app.set('port', port);
 
 // Écoute les événements de connexion et de démarrage du serveur

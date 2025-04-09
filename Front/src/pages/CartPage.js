@@ -72,6 +72,7 @@ console.log(panierItems);
 export default ProductCard;
 
 
+
 /*****  import back end */
 
 // import React, { useState, useEffect } from 'react';
@@ -213,3 +214,85 @@ export default ProductCard;
 // }
 
 // export default ProductCard;
+
+
+
+
+/********************************************************************
+ * 
+ * 
+ * 
+ * 
+ exemple pagination cotés front
+
+ fichier: ItemsList.js
+ 
+import React, { useState, useEffect } from 'react';
+
+const ItemsList = () => {
+  const [items, setItems] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      const response = await fetch(`/items?page=${currentPage}`);
+      const data = await response.json();
+      setItems(data.items);
+      setTotalPages(data.totalPages);
+    };
+
+    fetchItems();
+  }, [currentPage]);
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
+
+  return (
+    <div>
+      <h2>Liste des éléments</h2>
+      <ul>
+        {items.map((item) => (
+          <li key={item._id}>{item.name}</li>
+        ))}
+      </ul>
+      <div>
+        {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
+          <button
+            key={page}
+            onClick={() => handlePageChange(page)}
+            disabled={page === currentPage}
+          >
+            {page}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default ItemsList;
+
+intégration dans app.js :
+
+import React from 'react';
+import './App.css';
+import ItemsList from './ItemsList';
+
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <ItemsList />
+      </header>
+    </div>
+  );
+}
+
+export default App;
+
+
+ * 
+ * 
+ */

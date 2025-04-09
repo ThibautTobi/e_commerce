@@ -1,3 +1,16 @@
+const express = require('express');
+const router = express.Router();
+const userCtrl = require('./controllers/user.Ctrl');
+
+router.post('/api/auth/signup', userCtrl.signup);
+router.post('/api/auth/login', userCtrl.login);
+
+module.exports = router;
+
+
+
+
+
 // const express = require('express');
 // const bcrypt = require('bcrypt');
 // const jwt = require('jsonwebtoken');
@@ -41,15 +54,5 @@
 //     res.status(500).json({ message: 'Erreur lors de la connexion' });
 //   }
 // });
-
-// module.exports = router;
-
-
-// const express = require('express');
-// const router = express.Router();
-// const userCtrl = require('../controllers/user.Ctrl');
-
-// router.post('/api/auth/signup', userCtrl.signup);
-// router.post('/api/auth/login', userCtrl.login);
 
 // module.exports = router;

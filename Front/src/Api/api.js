@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://example-api-backend.com';
+const API_BASE_URL = 'http://localhost:3001';
 
 // Fonction utilitaire pour gérer les réponses HTTP
 const handleResponse = (response) => {
